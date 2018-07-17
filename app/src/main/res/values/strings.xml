@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pulp</string>
+    <string name="categories_subheading">Which categories should be included?</string>
+    <string name="history_subheading">How much budget history should be considered?</string>
 </resources>
