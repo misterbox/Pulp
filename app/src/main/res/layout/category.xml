@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:padding="10dp">
+    android:paddingBottom="10dp">
 
     <CheckBox
         android:id="@+id/cb_category_check"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/tv_category"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        app:layout_constraintLeft_toRightOf="@id/cb_category_check"/>
+        app:layout_constraintLeft_toRightOf="@id/cb_category_check" />
 
 </android.support.constraint.ConstraintLayout>

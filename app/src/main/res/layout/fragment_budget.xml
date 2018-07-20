@@ -2,18 +2,18 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/fragment_constraint_layout">
 
     <TextView
-        android:id="@+id/tv_category_history_fragment_subheading"
-        android:text="@string/categories_subheading"
+        android:id="@+id/tv_budget_fragment_subheading"
+        android:text="@string/budget_subheading"
         style="@style/fragment_subheading"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_categories"
+    <RadioGroup
+        android:id="@+id/rg_budget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tv_category_history_fragment_subheading"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_budget_fragment_subheading"/>
 
 </android.support.constraint.ConstraintLayout>

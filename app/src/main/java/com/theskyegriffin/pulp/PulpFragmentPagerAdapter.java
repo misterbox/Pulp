@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PageCount = 3;
-    private String[] tabTitles = new String[] { "Categories", "Transaction History", "Results" };
+    final int PageCount = 4;
+    private String[] tabTitles = new String[] { "Budget", "Categories", "History", "Results" };
 
     public PulpFragmentPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
@@ -23,13 +23,19 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                fragment =  new CategoryListFragment();
+                fragment = new BudgetFragment();
                 break;
             case 1:
+                fragment =  new CategoryListFragment();
+                break;
+            case 2:
                 fragment = new HistoryFragment();
                 break;
-            default:
+            case 3:
                 fragment = new ResultsFragment();
+                break;
+            default:
+                fragment = new BudgetFragment();
         }
 
         return fragment;
