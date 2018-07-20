@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/fragment_constraint_layout">
 
     <TextView
         android:id="@+id/tv_fragment_subheading"
-        android:text="@string/history_subheading"
-        style="@style/fragment_subheading"/>
+        style="@style/fragment_subheading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/history_subheading"/>
+
+    <TextView
+        android:id="@+id/tv_transaction_history_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/sb_transaction_history"
+        android:text="8 months"
+        app:layout_constraintTop_toBottomOf="@id/tv_fragment_subheading"/>
+
+    <SeekBar
+        android:id="@+id/sb_transaction_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="18"
+        android:progress="5"
+        app:layout_constraintTop_toBottomOf="@id/tv_transaction_history_label"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -19,9 +19,14 @@
         <item name="android:elevation">1dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingTop">10dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="fragment_constraint_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">10dp</item>
     </style>
 
 </resources>
