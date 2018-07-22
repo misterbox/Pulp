@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    style="@style/fragment_constraint_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/fragment_constraint_layout">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <TextView
-        android:id="@+id/tv_results_fragment_subheading"
+        android:id="@+id/tv_results_fragment_subheading_first"
         style="@style/fragment_subheading"
-        android:text="@string/results_subheading"/>
+        android:layout_width="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/results_subheading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_results_dollars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:text="$104"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_results_fragment_subheading_first"/>
+
+    <TextView
+        android:id="@+id/tv_results_cents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
+        android:text=".23"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_results_fragment_subheading_first"/>
+
+    <TextView
+        android:id="@+id/tv_results_fragment_subheading_second"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center_horizontal"
+        android:text="out of your budget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_results_dollars"/>
 
 </android.support.constraint.ConstraintLayout>
