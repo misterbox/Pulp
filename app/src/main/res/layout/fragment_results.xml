@@ -21,26 +21,29 @@
         android:id="@+id/tv_results_dollars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="$104"
         android:textColor="@color/colorAccent"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_results_fragment_subheading_upper"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_results_fragment_subheading_upper" />
 
     <TextView
         android:id="@+id/tv_results_cents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text=".23"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_results_fragment_subheading_upper"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_results_dollars"
+        app:layout_constraintTop_toBottomOf="@+id/tv_results_fragment_subheading_upper" />
 
     <TextView
         android:id="@+id/tv_results_fragment_subheading_lower"
