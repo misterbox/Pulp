@@ -4,6 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.theskyegriffin.pulp.Fragments.BudgetFragment;
+import com.theskyegriffin.pulp.Fragments.CategoryListFragment;
+import com.theskyegriffin.pulp.Fragments.HistoryFragment;
+import com.theskyegriffin.pulp.Fragments.ResultsFragment;
+
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PageCount = 4;
     private String[] tabTitles = new String[] { "Budget", "Categories", "History", "Results" };
