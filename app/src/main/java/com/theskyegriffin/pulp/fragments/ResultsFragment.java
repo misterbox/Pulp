@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.Fragments;
+package com.theskyegriffin.pulp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.theskyegriffin.pulp.R;
 
-public class HistoryFragment extends Fragment {
+public class ResultsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +16,7 @@ public class HistoryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_transaction_history, container, false);
+        View view = inflater.inflate(R.layout.fragment_results, container, false);
 
         return view;
     }

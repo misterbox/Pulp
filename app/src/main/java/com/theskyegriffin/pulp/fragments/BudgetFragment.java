@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.Fragments;
+package com.theskyegriffin.pulp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;

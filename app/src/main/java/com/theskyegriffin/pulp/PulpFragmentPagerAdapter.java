@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.theskyegriffin.pulp.Fragments.BudgetFragment;
-import com.theskyegriffin.pulp.Fragments.CategoryListFragment;
-import com.theskyegriffin.pulp.Fragments.HistoryFragment;
-import com.theskyegriffin.pulp.Fragments.ResultsFragment;
+import com.theskyegriffin.pulp.fragments.BudgetFragment;
+import com.theskyegriffin.pulp.fragments.CategoryListFragment;
+import com.theskyegriffin.pulp.fragments.HistoryFragment;
+import com.theskyegriffin.pulp.fragments.ResultsFragment;
 
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PageCount = 4;
