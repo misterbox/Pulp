@@ -12,9 +12,11 @@ import com.theskyegriffin.pulp.fragments.ResultsFragment;
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PageCount = 4;
     private String[] tabTitles = new String[] { "Budget", "Categories", "History", "Results" };
+    private final BudgetSqueezeViewModel viewModel;
 
-    public PulpFragmentPagerAdapter(FragmentManager fragmentManager) {
+    public PulpFragmentPagerAdapter(FragmentManager fragmentManager, BudgetSqueezeViewModel viewModel) {
         super(fragmentManager);
+        this.viewModel = viewModel;
     }
 
     @Override

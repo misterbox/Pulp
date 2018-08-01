@@ -17,14 +17,15 @@ public class BudgetSqueezeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_squeeze);
 
+        final String API_TOKEN = getApplicationContext().getString(R.string.api_token);
+        apiService = Client.getApiClient(API_TOKEN);
+        BudgetSqueezeViewModel viewModel = new BudgetSqueezeViewModel(BudgetRepository.getInstance(apiService), getApplicationContext());
+
         ViewPager viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new PulpFragmentPagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new PulpFragmentPagerAdapter(getSupportFragmentManager(), viewModel));
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
-        final String API_TOKEN = getApplicationContext().getString(R.string.api_token);
-        apiService = Client.getApiClient(API_TOKEN);
-        BudgetSqueezeViewModel viewModel = new BudgetSqueezeViewModel(BudgetRepository.getInstance(apiService), getApplicationContext());
     }
 }
