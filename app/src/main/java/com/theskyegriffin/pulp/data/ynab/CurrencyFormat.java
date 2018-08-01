@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.ynab;
+package com.theskyegriffin.pulp.data.ynab;
 
 import com.google.gson.annotations.SerializedName;
 

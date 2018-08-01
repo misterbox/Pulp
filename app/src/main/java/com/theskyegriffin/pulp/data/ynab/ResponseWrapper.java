@@ -1,6 +1,6 @@
-package com.theskyegriffin.pulp.ynab;
+package com.theskyegriffin.pulp.data.ynab;
 
-public class ResponseData<T> {
+public class ResponseWrapper<T> {
     private T data;
 
     public T getData() {

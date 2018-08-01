@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.api;
+package com.theskyegriffin.pulp.data.api;
 
 import com.google.gson.Gson;
 
