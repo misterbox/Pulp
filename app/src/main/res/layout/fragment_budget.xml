@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/fragment_constraint_layout">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_budget_fragment_subheading"
-        android:text="@string/budget_subheading"
-        style="@style/fragment_subheading"/>
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="view"
+            type="com.theskyegriffin.pulp.fragments.BudgetFragment" />
+        <variable
+            name="viewModel"
+            type="com.theskyegriffin.pulp.BudgetSqueezeViewModel" />
+    </data>
 
-    <RadioGroup
-        android:id="@+id/rg_budget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_budget_fragment_subheading"/>
+    <android.support.constraint.ConstraintLayout style="@style/fragment_constraint_layout">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_budget_fragment_subheading"
+            android:text="@string/budget_subheading"
+            style="@style/fragment_subheading"/>
+
+        <ListView
+            android:id="@+id/budget_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_budget_fragment_subheading"
+            app:budgets="@{viewModel.budgets"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

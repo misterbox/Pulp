@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.theskyegriffin.pulp.BudgetSqueezeViewModel;
 import com.theskyegriffin.pulp.R;
@@ -25,15 +23,15 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_budget, container, false);
         Context context = getContext();
-        RadioGroup radioGroup = view.findViewById(R.id.rg_budget);
-        int numberOfBudgets = 2;
-
-        for (int i = 0; i < numberOfBudgets; i++) {
-            RadioButton radioButton = new RadioButton(context);
-            radioButton.setText("Budget " + i);
-            radioButton.setId(View.generateViewId());
-            radioGroup.addView(radioButton);
-        }
+//        RadioGroup radioGroup = view.findViewById(R.id.rg_budget);
+//        int numberOfBudgets = 2;
+//
+//        for (int i = 0; i < numberOfBudgets; i++) {
+//            RadioButton radioButton = new RadioButton(context);
+//            radioButton.setText("Budget " + i);
+//            radioButton.setId(View.generateViewId());
+//            radioGroup.addView(radioButton);
+//        }
 
         return view;
     }

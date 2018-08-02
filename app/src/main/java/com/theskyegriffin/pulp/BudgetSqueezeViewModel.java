@@ -2,35 +2,24 @@ package com.theskyegriffin.pulp;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 
 import com.theskyegriffin.pulp.data.BudgetRepository;
 import com.theskyegriffin.pulp.data.ynab.Budget;
 import com.theskyegriffin.pulp.data.ynab.Budgets;
 import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BudgetSqueezeViewModel extends BaseObservable {
     private final BudgetRepository budgetRepository;
-    public final ArrayList<Budget> budgets = new ArrayList<Budget>();
+    public final ObservableList<Budget> budgets = new ObservableArrayList<>();
     private Context context;
 
     public BudgetSqueezeViewModel(BudgetRepository repository, Context context) {
         this.context = context.getApplicationContext();
         budgetRepository = repository;
-    }
-
-    @Bindable
-    public ArrayList<String> budgetNames() {
-        ArrayList<String> names = new ArrayList<String>();
-
-        for (Budget budget : budgets) {
-            names.add(budget.getName());
-        }
-
-        return names;
     }
 
     public void start() {
