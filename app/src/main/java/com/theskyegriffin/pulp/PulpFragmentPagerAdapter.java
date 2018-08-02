@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.theskyegriffin.pulp.fragments.BudgetFragment;
 import com.theskyegriffin.pulp.fragments.CategoryListFragment;
 import com.theskyegriffin.pulp.fragments.HistoryFragment;
-import com.theskyegriffin.pulp.fragments.ResultsFragment;
+import com.theskyegriffin.pulp.fragments.View;
 
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PageCount = 4;
-    private String[] tabTitles = new String[] { "Budget", "Categories", "History", "Results" };
+    private final int PageCount = 3;
+    private String[] tabTitles = new String[] { "Budget", "Categories", "History" };
     private final BudgetSqueezeViewModel viewModel;
 
     public PulpFragmentPagerAdapter(FragmentManager fragmentManager, BudgetSqueezeViewModel viewModel) {
@@ -26,26 +26,27 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment;
+        View fragment;
 
         switch (position) {
             case 0:
                 fragment = new BudgetFragment();
+                fragment.setViewModel(viewModel);
                 break;
             case 1:
                 fragment =  new CategoryListFragment();
+                fragment.setViewModel(viewModel);
                 break;
             case 2:
                 fragment = new HistoryFragment();
-                break;
-            case 3:
-                fragment = new ResultsFragment();
+                fragment.setViewModel(viewModel);
                 break;
             default:
                 fragment = new BudgetFragment();
+                fragment.setViewModel(viewModel);
         }
 
-        return fragment;
+        return (Fragment) fragment;
     }
 
     @Override

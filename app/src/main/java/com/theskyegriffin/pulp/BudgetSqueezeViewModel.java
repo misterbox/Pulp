@@ -23,7 +23,7 @@ public class BudgetSqueezeViewModel extends BaseObservable {
     }
 
     @Bindable
-    public ArrayList<String> getBudgetNames() {
+    public ArrayList<String> budgetNames() {
         ArrayList<String> names = new ArrayList<String>();
 
         for (Budget budget : budgets) {

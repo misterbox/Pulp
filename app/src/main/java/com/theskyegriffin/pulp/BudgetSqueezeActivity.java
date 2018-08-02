@@ -26,6 +26,5 @@ public class BudgetSqueezeActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 }
