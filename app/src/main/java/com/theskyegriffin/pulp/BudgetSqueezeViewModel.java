@@ -11,6 +11,7 @@ import com.theskyegriffin.pulp.data.ynab.Budgets;
 import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class BudgetSqueezeViewModel extends BaseObservable {
     private final BudgetRepository budgetRepository;
@@ -30,7 +31,8 @@ public class BudgetSqueezeViewModel extends BaseObservable {
         budgetRepository.getBudgets(new BudgetRepository.RepositoryCallback<Budgets>() {
             @Override
             public void onDataLoaded(ResponseWrapper<Budgets> data) {
-                budgets.addAll(Arrays.asList(data.getData().getBudgets()));
+                List<Budget> c = Arrays.asList(data.getData().getBudgets());
+                budgets.addAll(c);
             }
 
             @Override

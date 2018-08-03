@@ -15,7 +15,7 @@ public class BudgetSqueezeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_budget_squeeze);
+        setContentView(R.layout.budget_squeeze_activity);
 
         final String API_TOKEN = getApplicationContext().getString(R.string.api_token);
         apiService = Client.getApiClient(API_TOKEN);

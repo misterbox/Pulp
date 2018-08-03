@@ -1,18 +1,27 @@
 package com.theskyegriffin.pulp.fragments;
 
-import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import com.theskyegriffin.pulp.BudgetSqueezeViewModel;
-import com.theskyegriffin.pulp.R;
+import com.theskyegriffin.pulp.data.ynab.Budget;
+import com.theskyegriffin.pulp.databinding.BudgetListItemBinding;
+import com.theskyegriffin.pulp.databinding.BudgetsFragBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.fragments.View {
     private BudgetSqueezeViewModel viewModel;
+    BudgetsFragBinding budgetsFragBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,9 +29,17 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.start();
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_budget, container, false);
-        Context context = getContext();
+        budgetsFragBinding = BudgetsFragBinding.inflate(inflater, container, false);
+        budgetsFragBinding.setView(this);
+        budgetsFragBinding.setViewModel(viewModel);
+        View root = budgetsFragBinding.getRoot();
 //        RadioGroup radioGroup = view.findViewById(R.id.rg_budget);
 //        int numberOfBudgets = 2;
 //
@@ -33,11 +50,73 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
 //            radioGroup.addView(radioButton);
 //        }
 
-        return view;
+        return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setupListAdapter();
     }
 
     @Override
     public void setViewModel(@NonNull BudgetSqueezeViewModel viewModel) {
         this.viewModel = viewModel;
+    }
+
+    private void setupListAdapter() {
+        ListView budgetListView = budgetsFragBinding.budgetList;
+        BudgetAdapter adapter = new BudgetAdapter(new ArrayList<Budget>(0), viewModel);
+        budgetListView.setAdapter(adapter);
+    }
+
+    public static class BudgetAdapter extends BaseAdapter {
+        private final BudgetSqueezeViewModel viewModel;
+        private List<Budget> budgets;
+
+        public BudgetAdapter(List<Budget> budgets, BudgetSqueezeViewModel viewModel) {
+            this.viewModel = viewModel;
+            this.budgets = budgets;
+        }
+
+        public void replaceData(List<Budget> budgets) {
+            setList(budgets);
+        }
+
+        private void setList(List<Budget> budgets) {
+            this.budgets = budgets;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getCount() {
+            return budgets != null ? budgets.size() : 0;
+        }
+
+        @Override
+        public Budget getItem(int i) {
+            return budgets.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            Budget budget = getItem(i);
+            BudgetListItemBinding binding;
+
+            if (view == null) {
+                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+                binding = BudgetListItemBinding.inflate(inflater, viewGroup, false);
+            }
+            else {
+                binding = DataBindingUtil.getBinding(view);
+            }
+
+            return binding.getRoot();
+        }
     }
 }

@@ -20,7 +20,7 @@ public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_transaction_history, container, false);
+        View view = inflater.inflate(R.layout.transaction_history_frag, container, false);
 
         return view;
     }

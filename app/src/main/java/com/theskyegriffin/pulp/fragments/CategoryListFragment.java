@@ -24,7 +24,7 @@ public class CategoryListFragment extends Fragment implements com.theskyegriffin
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_category_list, container, false);
+        View view = inflater.inflate(R.layout.categories_frag, container, false);
         Context context = getContext();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_categories);
         String[] categories = new String[] {

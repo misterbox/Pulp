@@ -16,7 +16,7 @@ public class ResultsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_results, container, false);
+        View view = inflater.inflate(R.layout.results_frag, container, false);
 
         return view;
     }
