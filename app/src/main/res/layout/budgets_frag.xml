@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:bind="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View" />
-        <variable
-            name="view"
-            type="com.theskyegriffin.pulp.fragments.BudgetFragment" />
         <variable
             name="viewModel"
             type="com.theskyegriffin.pulp.BudgetSqueezeViewModel" />
@@ -26,7 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_budget_fragment_subheading"
-            bind:budgets="@{viewModel.budgets"/>
+            app:budgets="@{viewModel.budgets}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/budget_list"
+            android:text="@{String.valueOf(viewModel.budgets.size())}"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
