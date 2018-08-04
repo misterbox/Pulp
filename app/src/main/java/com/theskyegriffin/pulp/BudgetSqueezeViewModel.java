@@ -12,7 +12,6 @@ import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class BudgetSqueezeViewModel extends BaseObservable {
     private final String TAG = BudgetSqueezeViewModel.class.getSimpleName();
@@ -23,11 +22,6 @@ public class BudgetSqueezeViewModel extends BaseObservable {
     public BudgetSqueezeViewModel(BudgetRepository repository, Context context) {
         this.context = context.getApplicationContext();
         budgetRepository = repository;
-        Budget budget = new Budget();
-        budget.setId(UUID.randomUUID());
-        budget.setName("Mah Money");
-        budgets.add(budget);
-        notifyPropertyChanged(BR.budget);
     }
 
     public void start() {

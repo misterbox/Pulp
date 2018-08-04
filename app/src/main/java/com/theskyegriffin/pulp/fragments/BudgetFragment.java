@@ -39,15 +39,6 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
         budgetsFragBinding = BudgetsFragBinding.inflate(inflater, container, false);
         budgetsFragBinding.setViewModel(viewModel);
         View root = budgetsFragBinding.getRoot();
-//        RadioGroup radioGroup = view.findViewById(R.id.rg_budget);
-//        int numberOfBudgets = 2;
-//
-//        for (int i = 0; i < numberOfBudgets; i++) {
-//            RadioButton radioButton = new RadioButton(context);
-//            radioButton.setText("Budget " + i);
-//            radioButton.setId(View.generateViewId());
-//            radioGroup.addView(radioButton);
-//        }
 
         return root;
     }
@@ -66,16 +57,14 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
     private void setupListAdapter() {
         ListView budgetListView = budgetsFragBinding.budgetList;
         List<Budget> budgets = new ArrayList<Budget>();
-        BudgetAdapter adapter = new BudgetAdapter(budgets, viewModel);
+        BudgetAdapter adapter = new BudgetAdapter(budgets);
         budgetListView.setAdapter(adapter);
     }
 
     public static class BudgetAdapter extends BaseAdapter {
-        private final BudgetSqueezeViewModel viewModel;
         private List<Budget> budgets;
 
-        public BudgetAdapter(List<Budget> budgets, BudgetSqueezeViewModel viewModel) {
-            this.viewModel = viewModel;
+        public BudgetAdapter(List<Budget> budgets) {
             this.budgets = budgets;
         }
 
