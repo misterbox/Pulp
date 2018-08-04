@@ -23,11 +23,5 @@
             app:layout_constraintTop_toBottomOf="@id/tv_budget_fragment_subheading"
             app:budgets="@{viewModel.budgets}"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/budget_list"
-            android:text="@{String.valueOf(viewModel.budgets.size())}"/>
-
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -13,7 +13,7 @@ import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 import java.util.Arrays;
 import java.util.List;
 
-public class BudgetSqueezeViewModel extends BaseObservable {
+public class BudgetSqueezeViewModel extends BaseObservable  {
     private final String TAG = BudgetSqueezeViewModel.class.getSimpleName();
     private final BudgetRepository budgetRepository;
     public final ObservableList<Budget> budgets = new ObservableArrayList<>();
