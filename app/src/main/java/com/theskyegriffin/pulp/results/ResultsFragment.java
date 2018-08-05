@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.fragments;
+package com.theskyegriffin.pulp.results;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.fragments;
+package com.theskyegriffin.pulp.budgetsqueeze;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,11 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.theskyegriffin.pulp.BudgetSqueezeViewModel;
-import com.theskyegriffin.pulp.CategoryListAdapter;
 import com.theskyegriffin.pulp.R;
 
-public class CategoryListFragment extends Fragment implements com.theskyegriffin.pulp.fragments.View {
+public class CategoryListFragment extends Fragment implements com.theskyegriffin.pulp.View {
     private BudgetSqueezeViewModel viewModel;
 
     @Override

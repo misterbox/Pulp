@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.fragments;
+package com.theskyegriffin.pulp.budgetsqueeze;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.theskyegriffin.pulp.BudgetSqueezeViewModel;
 import com.theskyegriffin.pulp.data.ynab.Budget;
 import com.theskyegriffin.pulp.databinding.BudgetListItemBinding;
 import com.theskyegriffin.pulp.databinding.BudgetsFragBinding;
@@ -19,7 +18,7 @@ import com.theskyegriffin.pulp.databinding.BudgetsFragBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.fragments.View {
+public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.View {
     private BudgetSqueezeViewModel viewModel;
     BudgetsFragBinding budgetsFragBinding;
 

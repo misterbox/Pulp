@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.theskyegriffin.pulp.BudgetSqueezeViewModel" />
+            type="com.theskyegriffin.pulp.budgetsqueeze.BudgetSqueezeViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

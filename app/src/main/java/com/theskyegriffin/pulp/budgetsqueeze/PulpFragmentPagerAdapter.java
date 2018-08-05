@@ -1,13 +1,10 @@
-package com.theskyegriffin.pulp;
+package com.theskyegriffin.pulp.budgetsqueeze;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.theskyegriffin.pulp.fragments.BudgetFragment;
-import com.theskyegriffin.pulp.fragments.CategoryListFragment;
-import com.theskyegriffin.pulp.fragments.HistoryFragment;
-import com.theskyegriffin.pulp.fragments.View;
+import com.theskyegriffin.pulp.View;
 
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
     private final int PageCount = 3;

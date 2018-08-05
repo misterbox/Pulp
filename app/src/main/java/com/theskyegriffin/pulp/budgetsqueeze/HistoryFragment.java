@@ -1,4 +1,4 @@
-package com.theskyegriffin.pulp.fragments;
+package com.theskyegriffin.pulp.budgetsqueeze;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.theskyegriffin.pulp.BudgetSqueezeViewModel;
 import com.theskyegriffin.pulp.R;
 
-public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp.fragments.View {
+public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp.View {
     private BudgetSqueezeViewModel viewModel;
 
     @Override

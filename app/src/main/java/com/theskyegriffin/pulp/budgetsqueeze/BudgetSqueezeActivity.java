@@ -1,10 +1,12 @@
-package com.theskyegriffin.pulp;
+package com.theskyegriffin.pulp.budgetsqueeze;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.theskyegriffin.pulp.R;
+import com.theskyegriffin.pulp.ViewModelHolder;
 import com.theskyegriffin.pulp.data.BudgetRepository;
 import com.theskyegriffin.pulp.data.api.Client;
 import com.theskyegriffin.pulp.data.api.Service;
