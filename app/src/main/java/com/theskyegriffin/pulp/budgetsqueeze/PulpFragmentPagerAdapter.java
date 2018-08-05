@@ -3,6 +3,7 @@ package com.theskyegriffin.pulp.budgetsqueeze;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import com.theskyegriffin.pulp.View;
 
@@ -41,6 +42,13 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
         fragment.setViewModel(viewModel);
 
         return (Fragment) fragment;
+    }
+
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        View fragment = (View) object;
+        fragment.start();
+        super.setPrimaryItem(container, position, object);
     }
 
     @Override

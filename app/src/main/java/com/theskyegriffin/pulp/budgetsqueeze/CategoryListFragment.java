@@ -21,6 +21,11 @@ public class CategoryListFragment extends Fragment implements com.theskyegriffin
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.categories_frag, container, false);
         Context context = getContext();
@@ -48,6 +53,10 @@ public class CategoryListFragment extends Fragment implements com.theskyegriffin
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         return view;
+    }
+
+    @Override
+    public void start() {
     }
 
     @Override

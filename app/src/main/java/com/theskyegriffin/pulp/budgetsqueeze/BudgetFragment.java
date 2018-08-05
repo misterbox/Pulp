@@ -30,7 +30,6 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
     @Override
     public void onResume() {
         super.onResume();
-        viewModel.start();
     }
 
     @Override
@@ -46,6 +45,11 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupListAdapter();
+    }
+
+    @Override
+    public void start() {
+        viewModel.loadBudgets();
     }
 
     @Override

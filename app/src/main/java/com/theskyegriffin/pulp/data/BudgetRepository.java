@@ -3,7 +3,9 @@ package com.theskyegriffin.pulp.data;
 import android.support.annotation.NonNull;
 
 import com.theskyegriffin.pulp.data.api.Service;
+import com.theskyegriffin.pulp.data.ynab.Budget;
 import com.theskyegriffin.pulp.data.ynab.Budgets;
+import com.theskyegriffin.pulp.data.ynab.CategoryGroups;
 import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 
 import retrofit2.Call;
@@ -42,6 +44,24 @@ public class BudgetRepository {
 
             @Override
             public void onFailure(Call<ResponseWrapper<Budgets>> call, Throwable t) {
+                callback.onDataNoAvailable();
+            }
+        });
+    }
+
+    public void getCategories(@NonNull final Budget budget, @NonNull final RepositoryCallback callback) {
+        Call<ResponseWrapper<CategoryGroups>> call = apiService.getCategories(budget.getId());
+        call.enqueue(new Callback<ResponseWrapper<CategoryGroups>>() {
+
+            @Override
+            public void onResponse(Call<ResponseWrapper<CategoryGroups>> call, Response<ResponseWrapper<CategoryGroups>> response) {
+                if (response.isSuccessful()) {
+                    callback.onDataLoaded(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseWrapper<CategoryGroups>> call, Throwable t) {
                 callback.onDataNoAvailable();
             }
         });

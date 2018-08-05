@@ -25,6 +25,11 @@ public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp
     }
 
     @Override
+    public void start() {
+
+    }
+
+    @Override
     public void setViewModel(@NonNull BudgetSqueezeViewModel viewModel) {
         this.viewModel = viewModel;
     }
