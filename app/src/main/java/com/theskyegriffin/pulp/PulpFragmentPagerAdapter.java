@@ -31,20 +31,17 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 fragment = new BudgetFragment();
-                fragment.setViewModel(viewModel);
                 break;
             case 1:
                 fragment =  new CategoryListFragment();
-                fragment.setViewModel(viewModel);
                 break;
             case 2:
                 fragment = new HistoryFragment();
-                fragment.setViewModel(viewModel);
                 break;
             default:
                 fragment = new BudgetFragment();
-                fragment.setViewModel(viewModel);
         }
+        fragment.setViewModel(viewModel);
 
         return (Fragment) fragment;
     }

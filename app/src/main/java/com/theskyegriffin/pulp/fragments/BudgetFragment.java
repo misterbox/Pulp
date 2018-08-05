@@ -51,21 +51,25 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
 
     @Override
     public void setViewModel(@NonNull BudgetSqueezeViewModel viewModel) {
-        this.viewModel = viewModel;
+        if (this.viewModel == null) {
+            this.viewModel = viewModel;
+        }
     }
 
     private void setupListAdapter() {
         ListView budgetListView = budgetsFragBinding.budgetList;
         List<Budget> budgets = new ArrayList<Budget>();
-        BudgetAdapter adapter = new BudgetAdapter(budgets);
+        BudgetAdapter adapter = new BudgetAdapter(budgets, viewModel);
         budgetListView.setAdapter(adapter);
     }
 
     public static class BudgetAdapter extends BaseAdapter {
         private List<Budget> budgets;
+        private BudgetSqueezeViewModel viewModel;
 
-        public BudgetAdapter(List<Budget> budgets) {
+        public BudgetAdapter(List<Budget> budgets, BudgetSqueezeViewModel viewModel) {
             this.budgets = budgets;
+            this.viewModel = viewModel;
         }
 
         public void replaceData(List<Budget> budgets) {
@@ -105,6 +109,7 @@ public class BudgetFragment extends Fragment implements com.theskyegriffin.pulp.
                 binding = DataBindingUtil.getBinding(view);
             }
             binding.setBudget(budget);
+            binding.setViewModel(viewModel);
 
             return binding.getRoot();
         }

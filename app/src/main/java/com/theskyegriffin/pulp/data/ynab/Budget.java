@@ -18,6 +18,7 @@ public class Budget {
     private DateFormat dateFormat;
     @SerializedName("currency_format")
     private CurrencyFormat currencyFormat;
+    private Boolean selected = false;
 
     public UUID getId() {
         return id;
@@ -73,5 +74,13 @@ public class Budget {
 
     public void setCurrencyFormat(CurrencyFormat currencyFormat) {
         this.currencyFormat = currencyFormat;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 }

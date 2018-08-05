@@ -33,6 +33,7 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
             @Override
             public void onDataLoaded(ResponseWrapper<Budgets> data) {
                 List<Budget> c = Arrays.asList(data.getData().getBudgets());
+                budgets.clear();
                 budgets.addAll(c);
                 notifyPropertyChanged(BR.budget);
             }
@@ -42,5 +43,18 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
 
             }
         });
+    }
+
+    public void onBudgetClicked(Budget clickedBudget) {
+        for (Budget budget : budgets) {
+            if (budget.getId() == clickedBudget.getId()) {
+                budget.setSelected(true);
+            }
+            else {
+                budget.setSelected(false);
+            }
+        }
+
+        notifyPropertyChanged(BR._all);
     }
 }
