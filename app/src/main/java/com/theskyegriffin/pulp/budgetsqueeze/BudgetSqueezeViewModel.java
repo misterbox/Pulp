@@ -16,6 +16,7 @@ import com.theskyegriffin.pulp.data.ynab.CategoryGroup;
 import com.theskyegriffin.pulp.data.ynab.CategoryGroups;
 import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -90,12 +91,16 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
 
     private void setCategories() {
         CategoryGroups selectedCategoryGroups = budgetCategoryMap.get(selectedBudget.getId());
+        ArrayList<Category> categoriesToAdd = new ArrayList<>();
 
         for (CategoryGroup group : selectedCategoryGroups.getCategoryGroups()) {
             if (!isDefaultCategoryGroup(group)) {
-                categories.addAll(Arrays.asList(group.getCategories()));
+                categoriesToAdd.addAll(Arrays.asList(group.getCategories()));
             }
         }
+
+        categories.clear();
+        categories.addAll(categoriesToAdd);
     }
 
     private boolean isDefaultCategoryGroup(CategoryGroup group) {
@@ -118,5 +123,6 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         }
 
         notifyPropertyChanged(BR._all);
+        loadCategories();
     }
 }

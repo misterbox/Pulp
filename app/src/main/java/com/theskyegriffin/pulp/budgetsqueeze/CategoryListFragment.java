@@ -50,7 +50,6 @@ public class CategoryListFragment extends Fragment implements com.theskyegriffin
 
     @Override
     public void start() {
-        viewModel.loadCategories();
     }
 
     @Override
