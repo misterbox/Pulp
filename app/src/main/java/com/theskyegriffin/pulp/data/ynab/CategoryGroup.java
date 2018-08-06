@@ -9,6 +9,10 @@ public class CategoryGroup {
     private boolean deleted;
     private Category[] categories;
 
+    public static String INTERNAL_MASTER_CATEGORY = "Internal Master Category";
+    public static String CREDIT_CARD_PAYMENTS = "Credit Card Payments";
+    public static String HIDDEN_CATEGORIES = "Hidden Categories";
+
     public UUID getId() {
         return id;
     }

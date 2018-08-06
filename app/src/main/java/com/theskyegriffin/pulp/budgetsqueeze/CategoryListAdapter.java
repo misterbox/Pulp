@@ -1,46 +1,66 @@
 package com.theskyegriffin.pulp.budgetsqueeze;
 
+import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.theskyegriffin.pulp.R;
+import com.theskyegriffin.pulp.data.ynab.Category;
+import com.theskyegriffin.pulp.databinding.CategoryListItemBinding;
+
+import java.util.List;
 
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
-    private String[] categories;
+    private List<Category> categories;
+    private BudgetSqueezeViewModel viewModel;
 
-    public CategoryListAdapter(String[] categories) {
+    public CategoryListAdapter(List<Category> categories, BudgetSqueezeViewModel viewModel) {
         this.categories = categories;
+        this.viewModel = viewModel;
     }
 
+    @NonNull
     @Override
     public CategoryListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_list_item, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        CategoryListItemBinding binding = CategoryListItemBinding.inflate(inflater, parent, false);
+        binding.setViewModel(viewModel);
 
-        return new ViewHolder(view);
+        return new ViewHolder(binding.getRoot());
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        String category = categories[position];
-        viewHolder.categoryTextView.setText(category);
+    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+        Category category = getItem(i);
+        CategoryListItemBinding binding = DataBindingUtil.getBinding(viewHolder.categoryView);
+        binding.setCategory(category);
     }
 
     @Override
     public int getItemCount() {
-        return categories.length;
+        return categories != null ? categories.size() : 0;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public View categoryView;
-        public TextView categoryTextView;
+    public void replaceData(List<Category> categories) {
+        setList(categories);
+    }
 
-        public ViewHolder(View view) {
+    private void setList(List<Category> categories) {
+        this.categories = categories;
+        notifyDataSetChanged();
+    }
+
+    private Category getItem(int i) {
+        return categories.get(i);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        View categoryView;
+
+        ViewHolder(View view) {
             super(view);
-            categoryTextView = (TextView) view.findViewById(R.id.tv_category);
 
             categoryView = view;
         }

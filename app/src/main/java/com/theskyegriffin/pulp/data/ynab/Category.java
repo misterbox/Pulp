@@ -28,6 +28,7 @@ public class Category {
     @SerializedName("goal_percentage_complete")
     private double goalPercentageComplete;
     private boolean deleted;
+    private boolean checked;
 
     public UUID getId() {
         return id;
@@ -147,5 +148,13 @@ public class Category {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
