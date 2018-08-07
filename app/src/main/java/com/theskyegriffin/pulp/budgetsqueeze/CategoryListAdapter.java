@@ -23,7 +23,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     @NonNull
     @Override
-    public CategoryListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CategoryListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         CategoryListItemBinding binding = CategoryListItemBinding.inflate(inflater, parent, false);
         binding.setViewModel(viewModel);
@@ -32,7 +32,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Category category = getItem(i);
         CategoryListItemBinding binding = DataBindingUtil.getBinding(viewHolder.categoryView);
         binding.setCategory(category);
