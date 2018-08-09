@@ -2,8 +2,8 @@ package com.theskyegriffin.pulp.budgetsqueeze;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
-import android.databinding.ObservableInt;
 import android.databinding.ObservableList;
 import android.support.v4.util.ArrayMap;
 
@@ -18,6 +18,8 @@ import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,13 +28,41 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
     private final BudgetRepository budgetRepository;
     private final ArrayMap<UUID, CategoryGroups> budgetCategoryMap = new ArrayMap<>();
     private Budget selectedBudget;
+    private int maxTransactionHistoryMonths = 0;
+    private int selectedTransactionHistoryMonths = 0;
+    private String seekDisplay;
     private Context context;
     private boolean loadingBudgets = false;
     private boolean loadingCategories = false;
 
     public final ObservableList<Budget> budgets = new ObservableArrayList<>();
     public final ObservableList<Category> categories = new ObservableArrayList<>();
-    public final ObservableInt maxTransactionHistoryMonths = new ObservableInt(0);
+
+    @Bindable
+    public int getSeekValue() {
+        return selectedTransactionHistoryMonths;
+    }
+
+    public void setSeekValue(int progress) {
+        selectedTransactionHistoryMonths = progress;
+        notifyPropertyChanged(BR.seekValue);
+        setSeekDisplay(progress);
+    }
+
+    @Bindable
+    public int getSeekMax() {
+        return maxTransactionHistoryMonths;
+    }
+
+    @Bindable
+    public String getSeekDisplay() {
+        return seekDisplay;
+    }
+
+    public void setSeekDisplay(int progress) {
+        seekDisplay = String.format("%s months", progress);
+        notifyPropertyChanged(BR.seekDisplay);
+    }
 
     public BudgetSqueezeViewModel(BudgetRepository repository, Context context) {
         this.context = context.getApplicationContext();
@@ -119,10 +149,25 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         categories.addAll(categoriesToAdd);
     }
 
+    private boolean isDefaultCategoryGroup(CategoryGroup group) {
+        String groupName = group.getName();
+
+        return groupName.equals(CategoryGroup.CREDIT_CARD_PAYMENTS)
+                || groupName.equals(CategoryGroup.INTERNAL_MASTER_CATEGORY)
+                || groupName.equals(CategoryGroup.HIDDEN_CATEGORIES);
+    }
+
     private void setTransactionHistoryDuration() {
         if (selectedBudget != null) {
-//            Date budgetStart = selectedBudget.getFirstMonth();
-//            Date budgetEnd = selectedBudget.getLastMonth();
+            Date startDate = selectedBudget.getFirstMonth();
+            Date budgetEnd = selectedBudget.getLastMonth();
+            Date currentDate = Calendar.getInstance().getTime();
+            Date endDate = currentDate.getTime() < budgetEnd.getTime() ? currentDate : budgetEnd;
+
+            int historyDurationInMonths = getMonths(startDate, endDate);
+            maxTransactionHistoryMonths = historyDurationInMonths;
+            setSeekValue(1);
+            notifyPropertyChanged(BR._all);
 
             /*
                 get first and last month from budget
@@ -134,11 +179,14 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         }
     }
 
-    private boolean isDefaultCategoryGroup(CategoryGroup group) {
-        String groupName = group.getName();
+    private int getMonths(Date startDate, Date endDate) {
+        long milSeconds = endDate.getTime() - startDate.getTime();
+        long seconds = milSeconds / 1000;
+        int minutes = (int) seconds / 60;
+        int hours = minutes / 60;
+        int days = hours / 24;
+        int months = days / 30;
 
-        return groupName.equals(CategoryGroup.CREDIT_CARD_PAYMENTS)
-                || groupName.equals(CategoryGroup.INTERNAL_MASTER_CATEGORY)
-                || groupName.equals(CategoryGroup.HIDDEN_CATEGORIES);
+        return months;
     }
 }

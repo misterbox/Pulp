@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.theskyegriffin.pulp.R;
+import com.theskyegriffin.pulp.databinding.TransactionHistoryFragBinding;
 
 public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp.View {
     private BudgetSqueezeViewModel viewModel;
@@ -18,10 +18,12 @@ public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.transaction_history_frag, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        TransactionHistoryFragBinding binding = TransactionHistoryFragBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
+        View root = binding.getRoot();
 
-        return view;
+        return root;
     }
 
     @Override
