@@ -7,9 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.theskyegriffin.pulp.IView;
 import com.theskyegriffin.pulp.databinding.TransactionHistoryFragBinding;
 
-public class HistoryFragment extends Fragment implements com.theskyegriffin.pulp.View {
+public class HistoryFragment extends Fragment implements IView {
     private BudgetSqueezeViewModel viewModel;
 
     @Override

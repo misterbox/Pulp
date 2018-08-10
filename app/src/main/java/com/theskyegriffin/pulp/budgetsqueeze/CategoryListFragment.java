@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.theskyegriffin.pulp.IView;
 import com.theskyegriffin.pulp.data.ynab.Category;
 import com.theskyegriffin.pulp.databinding.CategoriesFragBinding;
 import com.theskyegriffin.pulp.databinding.CategoryListItemBinding;
@@ -19,7 +20,7 @@ import com.theskyegriffin.pulp.databinding.CategoryListItemBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryListFragment extends Fragment implements com.theskyegriffin.pulp.View {
+public class CategoryListFragment extends Fragment implements IView {
     private BudgetSqueezeViewModel viewModel;
     CategoriesFragBinding categoriesFragBinding;
 

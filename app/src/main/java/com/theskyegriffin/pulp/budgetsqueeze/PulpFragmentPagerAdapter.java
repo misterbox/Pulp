@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-import com.theskyegriffin.pulp.View;
+import com.theskyegriffin.pulp.IView;
 
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
     private final int PageCount = 3;
@@ -24,7 +24,7 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        View fragment;
+        IView fragment;
 
         switch (position) {
             case 0:
@@ -46,7 +46,7 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        View fragment = (View) object;
+        IView fragment = (IView) object;
         fragment.start();
         super.setPrimaryItem(container, position, object);
     }

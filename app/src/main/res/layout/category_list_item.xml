@@ -20,7 +20,8 @@
             android:id="@+id/cb_category_check"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:checked="@{category.checked}" />
+            android:onCheckedChanged="@{() -> viewModel.onCategoryChecked(category)}"
+            android:checked="@={category.checked}" />
 
         <TextView
             android:id="@+id/tv_category"

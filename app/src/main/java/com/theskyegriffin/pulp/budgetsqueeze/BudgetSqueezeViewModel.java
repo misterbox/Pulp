@@ -1,6 +1,5 @@
 package com.theskyegriffin.pulp.budgetsqueeze;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
@@ -37,9 +36,13 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
     private int selectedTransactionHistoryMonths = 0;
     private Calendar transactionHistoryEnd;
     private String seekDisplay;
-    private Context context;
+    private IBudgetCallback activity;
     private boolean loadingBudgets = false;
     private boolean loadingCategories = false;
+
+    private boolean budgetSelected = false;
+    private boolean categorySelected = false;
+    private boolean historySelected = false;
 
     public final ObservableList<Budget> budgets = new ObservableArrayList<>();
     public final ObservableList<Category> categories = new ObservableArrayList<>();
@@ -70,8 +73,8 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         notifyPropertyChanged(BR.seekDisplay);
     }
 
-    public BudgetSqueezeViewModel(BudgetRepository repository, Context context) {
-        this.context = context.getApplicationContext();
+    public BudgetSqueezeViewModel(BudgetRepository repository, IBudgetCallback activity) {
+        this.activity = activity;
         budgetRepository = repository;
     }
 
@@ -100,6 +103,21 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         }
     }
 
+    public void onCategoryChecked(Category category) {
+        category.setChecked(true);
+        onCategoryChanged();
+    }
+
+    public void onCategoryChanged(){
+        boolean result = false;
+
+        for (Category category : categories) {
+            result = result || category.isChecked();
+        }
+
+        onUserInput();
+    }
+
     public void onBudgetClicked(Budget clickedBudget) {
         for (Budget budget : budgets) {
             if (budget.getId() == clickedBudget.getId()) {
@@ -111,9 +129,11 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
             }
         }
 
+        budgetSelected = true;
         notifyPropertyChanged(BR._all);
         loadCategories();
         setTransactionHistoryDuration();
+        onUserInput();
     }
 
     private void loadCategories() {
@@ -153,6 +173,7 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
 
         categories.clear();
         categories.addAll(categoriesToAdd);
+        onCategoryChanged();
     }
 
     private boolean isDefaultCategoryGroup(CategoryGroup group) {
@@ -173,7 +194,7 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
             Date endDate = currentDate.getTime() < budgetEnd.getTime() ? currentDate : budgetEnd;
 
             maxTransactionHistoryMonths = getMonths(startDate, endDate);
-            setSeekValue(1);
+            setSeekValue(0);
             notifyPropertyChanged(BR._all);
 
             transactionHistoryEnd = Calendar.getInstance();
@@ -190,6 +211,11 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         int months = days / 30;
 
         return months;
+    }
+
+    public void onUserInput() {
+        boolean inputComplete = budgetSelected && categorySelected;
+        activity.callback(inputComplete);
     }
 
     public static ResultsViewModel toResultsViewModel(BudgetSqueezeViewModel squeezeVm) {

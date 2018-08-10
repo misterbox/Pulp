@@ -15,9 +15,10 @@ import com.theskyegriffin.pulp.data.api.Client;
 import com.theskyegriffin.pulp.data.api.Service;
 import com.theskyegriffin.pulp.util.ActivityUtils;
 
-public class BudgetSqueezeActivity extends AppCompatActivity {
+public class BudgetSqueezeActivity extends AppCompatActivity implements IBudgetCallback {
     private Service apiService;
     public static final String BUDGET_VIEWMODEL_TAG = "BUDGET_VIEWMODEL_TAG";
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class BudgetSqueezeActivity extends AppCompatActivity {
             viewModel = retainedViewModel.getViewModel();
         }
         else {
-            viewModel = new BudgetSqueezeViewModel(BudgetRepository.getInstance(apiService), getApplicationContext());
+            viewModel = new BudgetSqueezeViewModel(BudgetRepository.getInstance(apiService), this);
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), ViewModelHolder.createContainer(viewModel), BUDGET_VIEWMODEL_TAG);
         }
 
@@ -57,12 +58,22 @@ public class BudgetSqueezeActivity extends AppCompatActivity {
     }
 
     private void setupFab() {
-        FloatingActionButton fab = findViewById(R.id.fab_squeeze_budget);
+        fab = findViewById(R.id.fab_squeeze_budget);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, "FAB clicked", Snackbar.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void callback(boolean inputComplete) {
+        if (inputComplete) {
+            fab.setVisibility(View.VISIBLE);
+        }
+        else {
+            fab.setVisibility(View.GONE);
+        }
     }
 }
