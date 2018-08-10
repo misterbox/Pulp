@@ -5,8 +5,12 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import com.theskyegriffin.pulp.BR;
 import com.theskyegriffin.pulp.data.BudgetRepository;
 import com.theskyegriffin.pulp.data.ynab.Budget;
@@ -15,6 +19,7 @@ import com.theskyegriffin.pulp.data.ynab.Category;
 import com.theskyegriffin.pulp.data.ynab.CategoryGroup;
 import com.theskyegriffin.pulp.data.ynab.CategoryGroups;
 import com.theskyegriffin.pulp.data.ynab.ResponseWrapper;
+import com.theskyegriffin.pulp.results.ResultsViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +35,7 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
     private Budget selectedBudget;
     private int maxTransactionHistoryMonths = 0;
     private int selectedTransactionHistoryMonths = 0;
+    private Calendar transactionHistoryEnd;
     private String seekDisplay;
     private Context context;
     private boolean loadingBudgets = false;
@@ -161,21 +167,17 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         if (selectedBudget != null) {
             Date startDate = selectedBudget.getFirstMonth();
             Date budgetEnd = selectedBudget.getLastMonth();
-            Date currentDate = Calendar.getInstance().getTime();
+            Calendar currentMonth = Calendar.getInstance();
+            currentMonth.set(Calendar.DAY_OF_MONTH, 1);
+            Date currentDate = currentMonth.getTime();
             Date endDate = currentDate.getTime() < budgetEnd.getTime() ? currentDate : budgetEnd;
 
-            int historyDurationInMonths = getMonths(startDate, endDate);
-            maxTransactionHistoryMonths = historyDurationInMonths;
+            maxTransactionHistoryMonths = getMonths(startDate, endDate);
             setSeekValue(1);
             notifyPropertyChanged(BR._all);
 
-            /*
-                get first and last month from budget
-                get current month
-                start month = first month
-                end month = current month < last month ? current month : last month
-                get duration in months (
-             */
+            transactionHistoryEnd = Calendar.getInstance();
+            transactionHistoryEnd.setTime(endDate);
         }
     }
 
@@ -188,5 +190,23 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         int months = days / 30;
 
         return months;
+    }
+
+    public static ResultsViewModel toResultsViewModel(BudgetSqueezeViewModel squeezeVm) {
+        Calendar transactionHistoryStart = (Calendar) squeezeVm.transactionHistoryEnd.clone();
+        transactionHistoryStart.add(Calendar.MONTH, -squeezeVm.selectedTransactionHistoryMonths);
+        List<Category> selectedCategories = Lists.newArrayList(Collections2.filter(squeezeVm.categories,
+                new Predicate<Category>() {
+                    @Override
+                    public boolean apply(@NonNull Category category) {
+                        return category.isChecked();
+                    }
+                }
+        ));
+        ResultsViewModel resultsVm = new ResultsViewModel(squeezeVm.budgetRepository, squeezeVm.selectedBudget.getId(),
+                transactionHistoryStart, squeezeVm.transactionHistoryEnd);
+        resultsVm.setSelectedCategories(selectedCategories);
+
+        return resultsVm;
     }
 }
