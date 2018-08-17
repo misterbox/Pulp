@@ -104,7 +104,8 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
     }
 
     public void onCategoryChecked(Category category) {
-        category.setChecked(true);
+        boolean checked = category.isChecked();
+        category.setChecked(!checked);
         onCategoryChanged();
     }
 
@@ -115,6 +116,7 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
             result = result || category.isChecked();
         }
 
+        categorySelected = result;
         onUserInput();
     }
 
