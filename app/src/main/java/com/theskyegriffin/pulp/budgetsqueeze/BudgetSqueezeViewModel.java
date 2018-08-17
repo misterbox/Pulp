@@ -227,7 +227,7 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         onUserInput();
     }
 
-    public void onUserInput() {
+    private void onUserInput() {
         boolean inputComplete = budgetSelected && categorySelected && historySelected;
         activity.callback(inputComplete);
     }

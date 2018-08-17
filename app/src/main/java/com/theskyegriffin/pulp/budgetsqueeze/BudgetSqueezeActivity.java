@@ -13,12 +13,14 @@ import com.theskyegriffin.pulp.ViewModelHolder;
 import com.theskyegriffin.pulp.data.BudgetRepository;
 import com.theskyegriffin.pulp.data.api.Client;
 import com.theskyegriffin.pulp.data.api.Service;
+import com.theskyegriffin.pulp.results.ResultsViewModel;
 import com.theskyegriffin.pulp.util.ActivityUtils;
 
 public class BudgetSqueezeActivity extends AppCompatActivity implements IBudgetCallback {
     private Service apiService;
     public static final String BUDGET_VIEWMODEL_TAG = "BUDGET_VIEWMODEL_TAG";
     private FloatingActionButton fab;
+    private BudgetSqueezeViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class BudgetSqueezeActivity extends AppCompatActivity implements IBudgetC
 
         final String API_TOKEN = getApplicationContext().getString(R.string.api_token);
         apiService = Client.getApiClient(API_TOKEN);
-        BudgetSqueezeViewModel viewModel = findOrCreateViewModel();
+        viewModel = findOrCreateViewModel();
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new PulpFragmentPagerAdapter(getSupportFragmentManager(), viewModel));
@@ -63,6 +65,7 @@ public class BudgetSqueezeActivity extends AppCompatActivity implements IBudgetC
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, "FAB clicked", Snackbar.LENGTH_SHORT).show();
+                ResultsViewModel resultsViewModel = BudgetSqueezeViewModel.toResultsViewModel(viewModel);
             }
         });
     }
