@@ -37,6 +37,7 @@
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:onProgressChanged="@{viewModel::onProgressChanged}"
             android:max="@{viewModel.seekMax}"
             android:progress="@={viewModel.seekValue}"
             app:layout_constraintEnd_toEndOf="parent"

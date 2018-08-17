@@ -6,6 +6,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
+import android.widget.SeekBar;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -215,8 +216,19 @@ public class BudgetSqueezeViewModel extends BaseObservable  {
         return months;
     }
 
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (progress > 0) {
+            historySelected = true;
+        }
+        else {
+            historySelected = false;
+        }
+
+        onUserInput();
+    }
+
     public void onUserInput() {
-        boolean inputComplete = budgetSelected && categorySelected;
+        boolean inputComplete = budgetSelected && categorySelected && historySelected;
         activity.callback(inputComplete);
     }
 
