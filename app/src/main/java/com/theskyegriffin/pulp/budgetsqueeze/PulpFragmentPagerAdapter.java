@@ -6,13 +6,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.theskyegriffin.pulp.IView;
+import com.theskyegriffin.pulp.IViewModel;
 
 public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
     private final int PageCount = 3;
     private String[] tabTitles = new String[] { "Budget", "Categories", "History" };
-    private final BudgetSqueezeViewModel viewModel;
+    private final IViewModel viewModel;
 
-    public PulpFragmentPagerAdapter(FragmentManager fragmentManager, BudgetSqueezeViewModel viewModel) {
+    public PulpFragmentPagerAdapter(FragmentManager fragmentManager, IViewModel viewModel) {
         super(fragmentManager);
         this.viewModel = viewModel;
     }
@@ -31,7 +32,7 @@ public class PulpFragmentPagerAdapter extends FragmentPagerAdapter {
                 fragment = new BudgetFragment();
                 break;
             case 1:
-                fragment =  new CategoryListFragment();
+                fragment = new CategoryListFragment();
                 break;
             case 2:
                 fragment = new HistoryFragment();

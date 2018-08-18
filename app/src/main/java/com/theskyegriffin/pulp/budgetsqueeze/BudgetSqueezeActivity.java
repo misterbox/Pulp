@@ -1,5 +1,6 @@
 package com.theskyegriffin.pulp.budgetsqueeze;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,11 +9,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.theskyegriffin.pulp.IViewModel;
 import com.theskyegriffin.pulp.R;
 import com.theskyegriffin.pulp.ViewModelHolder;
 import com.theskyegriffin.pulp.data.BudgetRepository;
 import com.theskyegriffin.pulp.data.api.Client;
 import com.theskyegriffin.pulp.data.api.Service;
+import com.theskyegriffin.pulp.results.ResultsActivity;
 import com.theskyegriffin.pulp.results.ResultsViewModel;
 import com.theskyegriffin.pulp.util.ActivityUtils;
 
@@ -32,7 +35,7 @@ public class BudgetSqueezeActivity extends AppCompatActivity implements IBudgetC
         viewModel = findOrCreateViewModel();
 
         ViewPager viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new PulpFragmentPagerAdapter(getSupportFragmentManager(), viewModel));
+        viewPager.setAdapter(new PulpFragmentPagerAdapter(getSupportFragmentManager(), (IViewModel) viewModel));
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
@@ -66,6 +69,12 @@ public class BudgetSqueezeActivity extends AppCompatActivity implements IBudgetC
             public void onClick(View v) {
                 Snackbar.make(v, "FAB clicked", Snackbar.LENGTH_SHORT).show();
                 ResultsViewModel resultsViewModel = BudgetSqueezeViewModel.toResultsViewModel(viewModel);
+                ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
+                        ViewModelHolder.createContainer(resultsViewModel),
+                        ResultsActivity.RESULTS_VIEWMODEL_TAG);
+
+                Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
             }
         });
     }

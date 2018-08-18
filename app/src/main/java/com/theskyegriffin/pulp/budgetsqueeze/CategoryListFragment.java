@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.theskyegriffin.pulp.IView;
+import com.theskyegriffin.pulp.IViewModel;
 import com.theskyegriffin.pulp.data.ynab.Category;
 import com.theskyegriffin.pulp.databinding.CategoriesFragBinding;
 import com.theskyegriffin.pulp.databinding.CategoryListItemBinding;
@@ -54,8 +55,8 @@ public class CategoryListFragment extends Fragment implements IView {
     }
 
     @Override
-    public void setViewModel(@NonNull BudgetSqueezeViewModel viewModel) {
-        this.viewModel = viewModel;
+    public void setViewModel(@NonNull IViewModel viewModel) {
+        this.viewModel = (BudgetSqueezeViewModel) viewModel;
     }
 
     private void setupListAdapter() {

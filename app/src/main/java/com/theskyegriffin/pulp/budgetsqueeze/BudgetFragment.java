@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.theskyegriffin.pulp.IView;
+import com.theskyegriffin.pulp.IViewModel;
 import com.theskyegriffin.pulp.data.ynab.Budget;
 import com.theskyegriffin.pulp.databinding.BudgetListItemBinding;
 import com.theskyegriffin.pulp.databinding.BudgetsFragBinding;
@@ -54,9 +55,9 @@ public class BudgetFragment extends Fragment implements IView {
     }
 
     @Override
-    public void setViewModel(@NonNull BudgetSqueezeViewModel viewModel) {
+    public void setViewModel(@NonNull IViewModel viewModel) {
         if (this.viewModel == null) {
-            this.viewModel = viewModel;
+            this.viewModel = (BudgetSqueezeViewModel) viewModel;
         }
     }
 

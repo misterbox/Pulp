@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.theskyegriffin.pulp.IView;
+import com.theskyegriffin.pulp.IViewModel;
 import com.theskyegriffin.pulp.databinding.TransactionHistoryFragBinding;
 
 public class HistoryFragment extends Fragment implements IView {
@@ -33,7 +34,7 @@ public class HistoryFragment extends Fragment implements IView {
     }
 
     @Override
-    public void setViewModel(@NonNull BudgetSqueezeViewModel viewModel) {
-        this.viewModel = viewModel;
+    public void setViewModel(@NonNull IViewModel viewModel) {
+        this.viewModel = (BudgetSqueezeViewModel) viewModel;
     }
 }
